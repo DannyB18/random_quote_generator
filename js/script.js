@@ -49,25 +49,26 @@ const quotes = [
  * `getRandomQuote` function
 ***/
 
-const randomArrayIndex = (arrLength) => Math.floor(Math.random() * arrLength);
-const getRandomQuote = (arr) => quotes[randomArrayIndex(arr.length)];
+const getRandomQuote = (arr) => quotes[Math.floor(Math.random() * arr.length)];
 
 /***
  * `printQuote` function
 ***/
 
-// const quoteArea = document.querySelector('.quote');
-// const sourceArea = document.querySelector('.source');
-// const citationArea = document.querySelector('.citation');
-// const yearArea = document.querySelector('.year');
+const printQuote = () => {
+  const randomQuote = getRandomQuote(quotes);
+
+}
 
 const printQuote = () => {
   const randomQuote = getRandomQuote(quotes);
   for (key in randomQuote) {
+    if (key === 'quote' || key === 'source') {
+      document.createElement('p').innerHTML = `<p class="${key}"${randomQuote[key]}</p>`;
+    }
     document.querySelector(`.${key}`).textContent = randomQuote[key];
-    console.log(randomQuote);
+    // console.log(randomQuote);
   }
-  sourceArea
   // quoteArea.textContent = randomQuote.quote;
   // sourceArea.textContent = randomQuote.source;
   // citationArea.textContent = randomQuote.citation;
