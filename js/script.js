@@ -54,23 +54,28 @@ const quotes = [
  * `getRandomQuote` function
 ***/
 
+// Selects random quote from object array
 const getRandomQuote = (arr) => quotes[Math.floor(Math.random() * arr.length)];
-const randomColor = () => Math.floor(Math.random()*16777215).toString(16);
+
+// Selects a random color by creating a random hex value
+const randomColor = () => `#${Math.floor(Math.random()*16777215).toString(16)}`;
 
 /***
  * `printQuote` function
 ***/
 
+// shortcut function to create elements with properties easily
 const createElement = (elementName, property = null, value = null) => {
   const element = document.createElement(elementName);
   element[property] = value;
   return element;
 };
 
+// Prints quotes and adds certain elements if they are present in the object.
 const printQuote = () => {
   const quoteBox = document.querySelector("#quote-box");
   quoteBox.innerHTML = '';
-  document.querySelector("body").style.backgroundColor = '#' + randomColor();
+  document.querySelector("body").style.backgroundColor = randomColor();
   const randomQuote = getRandomQuote(quotes);
   const objQuote = createElement("p", "className", "quote");
   const objSource = createElement("p", "className", "source");
@@ -100,8 +105,10 @@ const printQuote = () => {
  * DO NOT CHANGE THE CODE BELOW!!
 ***/
 
+// Auto refresh quotes
 setInterval(printQuote, 10000)
 
+// Quote refresh button event handler
 document.getElementById('load-quote').addEventListener("click", printQuote, false);
 
 
